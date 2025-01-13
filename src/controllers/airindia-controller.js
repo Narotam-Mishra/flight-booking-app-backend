@@ -5,7 +5,6 @@ const { error } = require('winston');
 
 async function createAirIndia(req, res) {
     try {
-        console.log("Inside controller");
         const airindiaRes = await AirIndiaService.createAirIndia({
             modelNumber: req.body.modelNumber,
             capacity: req.body.capacity,
