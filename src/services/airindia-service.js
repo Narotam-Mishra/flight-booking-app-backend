@@ -13,11 +13,12 @@ async function createAirIndia(data){
         // console.log("Error:", error);
         if(error.name === 'SequelizeValidationError'){
             let explanation = [];
+            // console.log(error);
             error.errors.forEach((err) => {
                 explanation.push(err.message);
             })
-            console.log("Explanation:", explanation);
-            throw new AppError('Cannot create a new AirIndia object', StatusCodes.INTERNAL_SERVER_ERROR)
+            // console.log("Explanation:", explanation);
+            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
         throw new AppError('Cannot create a new AirIndia object', StatusCodes.INTERNAL_SERVER_ERROR)
     }
