@@ -5,7 +5,7 @@ const airindiaRoutes = require('./airindia-routes');
 
 const router = express.Router();
 
-router.use('/airindia', airindiaRoutes);
+router.use('/airplanes', airindiaRoutes);
 
 router.get('/info', InfoController.info);
 

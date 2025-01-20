@@ -5,11 +5,17 @@ const { AirIndiaMiddlewares } = require('../../middlewares');
 
 const router = express.Router();
 
-// /api/v1/airindia POST
+// /api/v1/airplanes POST
 router.post(
   "/",
   AirIndiaMiddlewares.validateCreateRequest,
   AirIndiaController.createAirIndia
 );
+
+// /api/v1/airplanes GET
+router.get(
+  "/",
+  AirIndiaController.getAirplanes,
+)
 
 module.exports = router;
