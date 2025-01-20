@@ -18,4 +18,10 @@ router.get(
   AirIndiaController.getAirplanes,
 )
 
+// /api/v1/airplanes/id GET
+router.get(
+  "/:id",
+  AirIndiaController.getAirplane,
+)
+
 module.exports = router;

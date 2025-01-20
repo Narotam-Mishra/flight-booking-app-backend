@@ -3,9 +3,13 @@ const { StatusCodes } = require('http-status-codes');
 const { AirIndiaService } = require('../services');
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 
+/**
+ * POST : /airplanes
+ * req-body: {}
+ */
 async function createAirIndia(req, res) {
     try {
-        const airindiaRes = await AirIndiaService.createAirIndia({
+        const airindiaRes = await AirIndiaService.createAirPlane({
             modelNumber: req.body.modelNumber,
             capacity: req.body.capacity,
         });
@@ -21,6 +25,9 @@ async function createAirIndia(req, res) {
     }
 }
 
+/**
+ * GET : /airplanes
+ */
 async function getAirplanes(req, res){
     try {
         const airplanes = await AirIndiaService.getAllAirplanes();
@@ -36,7 +43,26 @@ async function getAirplanes(req, res){
     }
 }
 
+/**
+ * GET : /airplanes/id
+ */
+async function getAirplane(req, res){
+    try {
+        const airplaneById = await AirIndiaService.getAirplane(req.params.id);
+        SuccessResponse.data = airplaneById;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse)
+    }
+}
+
 module.exports = {
     createAirIndia,
-    getAirplanes
+    getAirplanes,
+    getAirplane
 }

@@ -5,7 +5,7 @@ const { AirIndiaRepository } = require('../repositories');
 const airindiaRepository = new AirIndiaRepository();
 const AppError = require('../utils/errors/app-error')
 
-async function createAirIndia(data){
+async function createAirPlane(data){
     try {
         const airindia = await airindiaRepository.create(data);
         return airindia;
@@ -33,7 +33,20 @@ async function getAllAirplanes(params) {
     }
 }
 
+async function getAirplane(id){
+    try {
+        const singleAirplane = await airindiaRepository.get(id);
+        return singleAirplane;
+    } catch (error) {
+        if(error.statusCode === StatusCodes.NOT_FOUND){
+            throw new AppError('The airplane you requested is not present', error.statusCode);
+        }
+        throw new AppError('Cannot fetch data of the airplane by id', StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
+
 module.exports = {
-    createAirIndia,
-    getAllAirplanes
+    createAirPlane,
+    getAllAirplanes,
+    getAirplane
 }
