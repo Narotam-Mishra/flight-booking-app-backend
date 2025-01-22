@@ -44,7 +44,7 @@ async function getAirplanes(req, res){
 }
 
 /**
- * GET : /airplanes/id
+ * GET : /airplanes/:id
  */
 async function getAirplane(req, res){
     try {
@@ -61,8 +61,27 @@ async function getAirplane(req, res){
     }
 }
 
+/**
+ * DELETE : /airplanes/:id
+ */
+async function destroyAirplane(req, res){
+    try {
+        const airplanes = await AirIndiaService.destroyAirplane(req.params.id);
+        SuccessResponse.data = airplanes;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse)
+    }
+}
+
 module.exports = {
     createAirIndia,
     getAirplanes,
-    getAirplane
+    getAirplane,
+    destroyAirplane
 }

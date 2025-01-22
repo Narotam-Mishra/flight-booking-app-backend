@@ -18,10 +18,16 @@ router.get(
   AirIndiaController.getAirplanes,
 )
 
-// /api/v1/airplanes/id GET
+// /api/v1/airplanes/:id GET
 router.get(
   "/:id",
   AirIndiaController.getAirplane,
+)
+
+// /api/v1/airplanes/:id DELETE
+router.delete(
+  "/:id",
+  AirIndiaController.destroyAirplane,
 )
 
 module.exports = router;
