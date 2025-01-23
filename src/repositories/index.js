@@ -1,6 +1,5 @@
-const AirIndiaRepository = require("./airindia-repository");
-
 
 module.exports = {
-    AirIndiaRepository
+    AirIndiaRepository: require("./airindia-repository"),
+    CityRepository: require("./city-repository")
 }
