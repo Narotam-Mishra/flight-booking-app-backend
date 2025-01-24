@@ -24,6 +24,12 @@ router.get(
   AirIndiaController.getAirplane,
 )
 
+// /api/v1/airplanes/:id UPDATE
+router.patch(
+  "/:id",
+  AirIndiaController.updateAirplane,
+)
+
 // /api/v1/airplanes/:id DELETE
 router.delete(
   "/:id",

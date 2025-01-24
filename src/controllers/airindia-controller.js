@@ -62,6 +62,29 @@ async function getAirplane(req, res){
 }
 
 /**
+ * UPDATE: /airplanes/:id
+ */
+async function updateAirplane(req, res){
+    try {
+        const updatedAirplaneRes = await AirIndiaService.updateAirplane(
+          req.params.id,
+          { capacity: req.body.capacity }
+        );
+        SuccessResponse.message = "Airplane data updated successfully"
+        SuccessResponse.data = updatedAirplaneRes;
+        return res
+                .status(StatusCodes.ACCEPTED)
+                .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse)
+    }
+}
+
+
+/**
  * DELETE : /airplanes/:id
  */
 async function destroyAirplane(req, res){
@@ -83,5 +106,6 @@ module.exports = {
     createAirIndia,
     getAirplanes,
     getAirplane,
-    destroyAirplane
+    destroyAirplane,
+    updateAirplane,
 }
