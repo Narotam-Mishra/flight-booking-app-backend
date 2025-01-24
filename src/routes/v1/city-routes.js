@@ -18,6 +18,13 @@ router.get(
   CityController.getAllCities
 );
 
+// /api/v1/cities/:id PATCH
+router.patch(
+  "/:id",
+  CityMiddlewares.validateUpdateCityRequest,
+  CityController.updateCity
+);
+
 // /api/v1/cities/:id DELETE
 router.delete(
   "/:id",
