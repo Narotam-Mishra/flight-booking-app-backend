@@ -12,6 +12,18 @@ router.post(
   CityController.createNewCity
 );
 
+// /api/v1/cities GET
+router.get(
+  "/",
+  CityController.getAllCities
+);
+
+// /api/v1/cities/:id DELETE
+router.delete(
+  "/:id",
+  CityController.deleteCity
+);
+
 
 
 module.exports = router;
