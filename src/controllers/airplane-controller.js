@@ -14,6 +14,7 @@ async function createAirIndia(req, res) {
             capacity: req.body.capacity,
         });
         SuccessResponse.data = airplaneRes;
+        SuccessResponse.message = "Airplane data created successfully";
         return res
                 .status(StatusCodes.CREATED)
                 .json(SuccessResponse);
@@ -32,6 +33,7 @@ async function getAirplanes(req, res){
     try {
         const airplanes = await AirplaneService.getAllAirplanes();
         SuccessResponse.data = airplanes;
+        SuccessResponse.message = "Airplane data fetched successfully"
         return res
                 .status(StatusCodes.OK)
                 .json(SuccessResponse);
@@ -90,7 +92,7 @@ async function updateAirplane(req, res){
 async function destroyAirplane(req, res){
     try {
         const airplanes = await AirplaneService.destroyAirplane(req.params.id);
-        SuccessResponse.message = "Airplane data deleted successfully"
+        SuccessResponse.message = "Airplane data deleted successfully";
         SuccessResponse.data = airplanes;
         return res
                 .status(StatusCodes.OK)

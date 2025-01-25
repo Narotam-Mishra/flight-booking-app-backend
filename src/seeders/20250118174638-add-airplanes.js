@@ -13,7 +13,26 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('AirIndia', [
+    await queryInterface.createTable('airplanes', {
+      id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+      },
+      modelNumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      capacity: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
+    });
+    await queryInterface.bulkInsert('airplanes', [
       {
         modelNumber: 'airbus980',
         capacity: 800,
@@ -36,8 +55,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("AirIndia", {
-      [Op.or]: [{ modelNumber: "boeing779" }, { modelNumber: "airbus980" }],
-    });
+    await queryInterface.bulkDelete('airplanes', null, {});
+    // await queryInterface.bulkDelete("airplanes", {
+    //   [Op.or]: [{ modelNumber: "boeing779" }, { modelNumber: "airbus980" }],
+    // });
   }
 };
