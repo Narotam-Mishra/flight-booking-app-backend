@@ -1,6 +1,6 @@
 
 const { StatusCodes } = require('http-status-codes');
-const { AirIndiaService } = require('../services');
+const { AirplaneService } = require('../services');
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 
 /**
@@ -9,11 +9,11 @@ const { SuccessResponse, ErrorResponse } = require('../utils/common');
  */
 async function createAirIndia(req, res) {
     try {
-        const airindiaRes = await AirIndiaService.createAirPlane({
+        const airplaneRes = await AirplaneService.createAirPlane({
             modelNumber: req.body.modelNumber,
             capacity: req.body.capacity,
         });
-        SuccessResponse.data = airindiaRes;
+        SuccessResponse.data = airplaneRes;
         return res
                 .status(StatusCodes.CREATED)
                 .json(SuccessResponse);
@@ -30,7 +30,7 @@ async function createAirIndia(req, res) {
  */
 async function getAirplanes(req, res){
     try {
-        const airplanes = await AirIndiaService.getAllAirplanes();
+        const airplanes = await AirplaneService.getAllAirplanes();
         SuccessResponse.data = airplanes;
         return res
                 .status(StatusCodes.OK)
@@ -48,7 +48,7 @@ async function getAirplanes(req, res){
  */
 async function getAirplane(req, res){
     try {
-        const airplaneById = await AirIndiaService.getAirplane(req.params.id);
+        const airplaneById = await AirplaneService.getAirplane(req.params.id);
         SuccessResponse.data = airplaneById;
         return res
                 .status(StatusCodes.OK)
@@ -66,7 +66,7 @@ async function getAirplane(req, res){
  */
 async function updateAirplane(req, res){
     try {
-        const updatedAirplaneRes = await AirIndiaService.updateAirplane(
+        const updatedAirplaneRes = await AirplaneService.updateAirplane(
           req.params.id,
           { capacity: req.body.capacity }
         );
@@ -89,7 +89,8 @@ async function updateAirplane(req, res){
  */
 async function destroyAirplane(req, res){
     try {
-        const airplanes = await AirIndiaService.destroyAirplane(req.params.id);
+        const airplanes = await AirplaneService.destroyAirplane(req.params.id);
+        SuccessResponse.message = "Airplane data deleted successfully"
         SuccessResponse.data = airplanes;
         return res
                 .status(StatusCodes.OK)

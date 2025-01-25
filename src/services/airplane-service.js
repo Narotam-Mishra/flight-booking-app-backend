@@ -1,14 +1,14 @@
 
 const { StatusCodes } = require('http-status-codes');
-const { AirIndiaRepository } = require('../repositories');
+const { AirplaneRepository } = require('../repositories');
 
-const airindiaRepository = new AirIndiaRepository();
+const airplaneRepository = new AirplaneRepository();
 const AppError = require('../utils/errors/app-error')
 
 async function createAirPlane(data){
     try {
-        const airindia = await airindiaRepository.create(data);
-        return airindia;
+        const airplaneRes = await airplaneRepository.create(data);
+        return airplaneRes;
     } catch (error) {
         // console.log("Error:", error);
         if(error.name === 'SequelizeValidationError'){
@@ -26,7 +26,7 @@ async function createAirPlane(data){
 
 async function getAllAirplanes(params) {
     try {
-        const airplanes = await airindiaRepository.getAll();
+        const airplanes = await airplaneRepository.getAll();
         return airplanes;
     } catch (error) {
         throw new AppError('Cannot fetch data of all the airplanes', StatusCodes.INTERNAL_SERVER_ERROR)
@@ -35,7 +35,7 @@ async function getAllAirplanes(params) {
 
 async function getAirplane(id){
     try {
-        const singleAirplane = await airindiaRepository.get(id);
+        const singleAirplane = await airplaneRepository.get(id);
         return singleAirplane;
     } catch (error) {
         if(error.statusCode === StatusCodes.NOT_FOUND){
@@ -48,7 +48,7 @@ async function getAirplane(id){
 // updateAirplane
 async function updateAirplane(id, data){
     try {
-        const response = await airindiaRepository.update(id, data)
+        const response = await airplaneRepository.update(id, data)
         return response;
     } catch (error) {
         if(error.statusCode === StatusCodes.NOT_FOUND){
@@ -60,7 +60,7 @@ async function updateAirplane(id, data){
 
 async function destroyAirplane(id){
     try {
-        const response = await airindiaRepository.destroy(id)
+        const response = await airplaneRepository.destroy(id)
         return response;
     } catch (error) {
         if(error.statusCode === StatusCodes.NOT_FOUND){
