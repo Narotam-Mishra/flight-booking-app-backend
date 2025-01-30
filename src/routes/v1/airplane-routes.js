@@ -9,7 +9,7 @@ const router = express.Router();
 router.post(
   "/",
   AirplaneMiddlewares.validateCreateRequest,
-  AirplaneController.createAirIndia
+  AirplaneController.createAirplane
 );
 
 // /api/v1/airplanes GET

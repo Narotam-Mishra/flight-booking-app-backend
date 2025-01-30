@@ -7,7 +7,7 @@ const { SuccessResponse, ErrorResponse } = require('../utils/common');
  * POST : /airplanes
  * req-body: {}
  */
-async function createAirIndia(req, res) {
+async function createAirplane(req, res) {
     try {
         const airplaneRes = await AirplaneService.createAirPlane({
             modelNumber: req.body.modelNumber,
@@ -106,7 +106,7 @@ async function destroyAirplane(req, res){
 }
 
 module.exports = {
-    createAirIndia,
+    createAirplane,
     getAirplanes,
     getAirplane,
     destroyAirplane,

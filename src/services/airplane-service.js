@@ -20,7 +20,7 @@ async function createAirPlane(data){
             // console.log("Explanation:", explanation);
             throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
-        throw new AppError('Cannot create a new AirIndia object', StatusCodes.INTERNAL_SERVER_ERROR)
+        throw new AppError('Cannot create a new Airplane object', StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
 
