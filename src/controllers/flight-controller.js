@@ -3,6 +3,7 @@
 const { StatusCodes } = require('http-status-codes');
 const { FlightService } = require('../services');
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
+const AppError = require('../utils/errors/app-error');
 
 /**
  * POST : /flights
@@ -44,7 +45,29 @@ async function createFlight(req, res) {
     }
 }
 
+async function getAllFlights(req, res) {
+    try {
+        const flightsRes = await FlightService.getAllFlights(req.query);
+        if (flightsRes.length === 0) {
+            throw new AppError(
+                'No record exists with the given departure and arrival airports',
+                StatusCodes.NOT_FOUND, // Use 404 for "not found"
+            );
+        }
+        SuccessResponse.data = flightsRes;
+        SuccessResponse.message = "Flight data fetched with fliter successfully!!";
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse)
+    }
+}
 
 module.exports = {
     createFlight,
+    getAllFlights
 }
