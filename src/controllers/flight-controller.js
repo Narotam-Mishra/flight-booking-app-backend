@@ -50,7 +50,7 @@ async function getAllFlights(req, res) {
         const flightsRes = await FlightService.getAllFlights(req.query);
         if (flightsRes.length === 0) {
             throw new AppError(
-                'No record exists with the given departure and arrival airports',
+                'No such record exists with the given filters!!',
                 StatusCodes.NOT_FOUND, // Use 404 for "not found"
             );
         }
