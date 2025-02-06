@@ -12,3 +12,6 @@
     - `removeAirport`: Removes the association between a specific `Airport` and the `City`.
 
 - These methods are available on the City instance (bangalore in your example) and operate based on the relationship defined in your models.
+
+## [Eager Loading](https://sequelize.org/docs/v6/advanced-association-concepts/eager-loading/)
+- Eager Loading is the act of querying data of several models at once (one 'main' model and one or more associated models). At the SQL level, this is a query with one or more joins.
