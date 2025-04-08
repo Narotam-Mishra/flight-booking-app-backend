@@ -19,7 +19,10 @@ router.get(
 );
 
 // /api/v1/flights/:id GET
-
+router.get(
+  "/:id",
+  FlightController.getFlight
+);
 
 // /api/v1/flights/:id UPDATE
 
