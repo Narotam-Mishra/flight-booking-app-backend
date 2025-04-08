@@ -30,4 +30,11 @@ router.get(
 // /api/v1/flights/:id DELETE
 
 
+//  /api/v1/flights/:id/seats PATCH
+router.patch(
+  '/:id/seats',
+  FlightMiddlewares.validateUpdateSeatsRequest,
+  FlightController.updateSeats
+)
+
 module.exports = router;
